@@ -6,7 +6,7 @@
 # ==============================
 
 # 要访问的接口地址
-URL="https://lxsrcs.onrender.com/api/v0/"
+URL="https://${DOMAIN:-lxsrcs.onrender.com}/api/v0/"
 
 # 设置间隔时间（秒）
 INTERVAL=60
