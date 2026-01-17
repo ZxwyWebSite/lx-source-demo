@@ -1,0 +1,233 @@
+# 配置版本, 用于自动迁移
+Version = '1.1.0'
+
+# 程序主配置
+[Main]
+# 是否启用调试模式
+Debug = false
+# 监听地址，支持使用表达式
+Listen = ':10000'
+# 是否存在前置代理
+Proxy = true
+# 真实 IP 请求头
+RealIP = ''
+# 添加跨域响应头
+Cors = true
+# 文件日志，不填禁用
+LogFile = ''
+# 控制台日志输出（影响 io 性能，后台使用建议关闭）
+Console = true
+
+# 接口设置
+[Apis]
+# 网页端日志查看（测试版）/test/sse
+WebLog = false
+# 仅接口模式：不挂载前端文件
+ApiOnly = false
+
+# 访问控制
+[Auth]
+# 黑白名单
+[Auth.BanList]
+# 是否启用黑白名单
+Enable = false
+# 严格模式：白名单跳过后续验证；开启后仅黑名单 IP 允许访问，其余阻止；反之仅黑名单 IP 阻止访问，其余允许
+Strict = false
+# 白名单，支持单个 IP 与 CIDR 表示。文件路径以 # 开头，换行分隔
+White = ['127.0.0.1', '192.168.0.0/16']
+# 黑名单，支持单个 IP 与 CIDR 表示。文件路径以 # 开头，换行分隔
+Black = []
+
+# 速率限制
+[Auth.RateLimit]
+# 是否启用速率限制
+Enable = true
+# 检测分区：在指定秒数内进行检测，过期刷新
+Block = 30
+# 全局限制：所有用户每分块时间内允许的请求数，填 0 禁用
+Globle = 120
+# 单IP限制：单个 IP 每分块时间内允许的请求数
+Single = 15
+# 容忍次数：超出后继续请求则延长该分块时间
+BanNum = 5
+# 封禁时间：单次请求延长时间
+BanTim = 10
+
+# 接口密钥
+[Auth.ApiPass]
+# 是否启用接口密钥
+Enable = false
+# 是否自动填入脚本（仅供测试）
+Auto = false
+# 密钥值，留空随机生成
+Value = 'CKv6ffjNCSY'
+
+# 独立密钥（可用于关联用户）
+[Auth.UniPass]
+# 是否启用独立密钥
+Enable = false
+
+# 密钥池，格式：'密钥'='用户标识'
+[Auth.UniPass.Pool]
+
+# 解析源配置
+[Srcs]
+# 内置源账号池，请合理使用，切勿过度依赖
+[Srcs.Bn]
+# [WY] GD 音乐台开发者接口
+GDStudio = false
+# [WY|KG] Ikun 分享 解析接口，不太稳定
+IkunShare = false
+# [WY] 雨中情兰无损解析
+Toubiec = false
+# [WY] 小丸子科技云解析
+Xwzkj = true
+
+# 小芸源账号池
+[Srcs.Wy]
+# 是否启用此来源
+Enable = false
+# 解析时根据音乐详情选择合适的获取方式，降低会员账号调用频率。海外用户记得在下方设置游客伪装 IP
+Prefetch = true
+# 游客账号伪装 IP
+FakeIP = '116.163.56.23'
+
+[[Srcs.Wy.Group]]
+# 是否启用此分组
+Enable = true
+
+[[Srcs.Wy.Group.Node]]
+# 是否启用此账号
+Enable = true
+# 账号凭据
+Cookie = ''
+# 是否自动刷新登录
+Refresh = false
+# 是否自动每日签到
+DailyTask = false
+# 是否自动听歌打卡
+DailyListen = false
+
+# 小蜜源账号池
+[Srcs.Mg]
+# 是否启用此来源
+Enable = false
+
+# 小蜗源账号池
+[Srcs.Kw]
+# 是否启用此来源
+Enable = true
+# 白名单包名，留空默认
+Source = ''
+# 海外用户伪装 IP
+FakeIP = '116.163.56.23'
+
+# 小枸源账号池
+[Srcs.Kg]
+# 是否启用此来源
+Enable = true
+# 海外用户伪装 IP
+FakeIP = '116.163.56.23'
+
+[[Srcs.Kg.Node]]
+# 是否启用此账号
+Enable = true
+# 平台信息，0: 官方安卓，1: Lite 概念版，2: Elder 大字版（不完全支持）
+Plat = 0
+# 账号 id
+UserId = '0'
+# 账号 token
+Token = ''
+# 设备 mid
+Mid = ''
+# 设备 dfid
+Dfid = ''
+# 设备型号
+Device = ''
+# 是否自动刷新登录，不支持 大字版（Plat=2）
+Refresh = false
+# 是否自动签到，仅 概念版（Plat=1）可用
+LiteSignin = false
+
+# 小秋源账号池（南山必胜客绿尸寒警告，接口限制又多，暂不可用）
+[Srcs.Tx]
+# 是否启用此来源
+Enable = false
+Node = []
+
+# 小洛源账号池（原项目已停更，一些魔改版本可能无法正常对接）
+[Srcs.Lx]
+# 是否启用此来源
+Enable = false
+
+[[Srcs.Lx.Node]]
+# 是否启用此账号
+Enable = true
+# 启用平台
+Plat = ['wy', 'kg']
+# 接口地址
+Addr = 'https://88.lxmusic.xn--fiqs8s/lxmusicv3'
+# 接口密钥
+Pass = 'lxmusic'
+# 用户标识
+UA = ''
+# 密钥标头
+Head = ''
+
+# 自定义源信息
+[Lxcs]
+# 源的名字，建议 24 个字符以内
+Name = 'LX-Source-Next-Demo'
+# 源的描述，建议 36 个字符以内，可不填
+Desc = '✨ 新一代 LX Music 自定义解析源的 Golang 实现 ✨'
+# 源的版本，可不填（暂时只读）
+Vers = '1.1.0'
+# 源的作者，可不填
+Auth = 'Zxwy'
+# 源的主页，可不填
+Home = 'https://github.com/ZxwyWebSite/lx-source-next'
+
+# 数据存储
+[Data]
+# 缓存模式, 0: none: 禁用, 1: safe: 等待缓存完成后返回文件链接, 2: fast: 极速模式 (首次直接返回原链接, 若平台存在跟踪参数可能增大封号概率)
+Mode = 0
+# 缓存类型, 0: local: 本地, 1: cloud: 云盘（未适配）
+Type = 0
+
+# 缓存规则, meta+covr+song+lyrc
+[Data.Rule]
+# 排除模式：开启后不缓存下列平台
+ExcP = false
+# 缓存平台，可选 wy,mg,kw,kg,tx
+Plat = ['wy', 'kw', 'kg']
+# 排除模式：开启后不缓存下列音质
+ExcQ = false
+# 缓存音质，可选 128k,192k,320k,flac,flac24bit,temp(试听),orig(电台/云盘)
+Qual = ['320k']
+
+# 本地缓存相关设置
+[Data.Local]
+# 保存路径
+Path = 'data/cache'
+# 访问地址 (不填自动获取)
+Bind = ''
+# 临时链过期时间，单位秒
+Expi = 1800
+# 临时链签名密钥，值随意
+Sign = 'e5MqydC1TTXEyCbbdB4Aeg'
+# 限制访问 IP, 开启后会将用户 IP 加入到签名中
+Acip = false
+# 临时外链，开启后验证签名
+Dyna = false
+
+# 内存缓存
+[Memo]
+# 自定义分片大小：默认为 1024，大小越大，锁强度越小，并发性能越高，但内存占用也会越高，请尽量选择适合自己业务场景的大小
+Shards = 256
+
+# 错误提示
+[Errs]
+# 过期时间，单位秒。建议设置较短时间以使客户端自动刷新
+Expi = 120
+# 默认错误提示音频地址
+ErrMp3 = ''
