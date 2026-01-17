@@ -1,0 +1,21 @@
+{
+  "name": "lx-source-demo",
+  "version": "1.0.0",
+  "description": "LX-Source Next",
+  "main": "index.js",
+  "scripts": {
+    "start": "bash build.sh && bash start.sh",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZxwyWebSite/lx-source-demo.git"
+  },
+  "author": "Zxwy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ZxwyWebSite/lx-source-demo/issues"
+  },
+  "homepage": "https://github.com/ZxwyWebSite/lx-source-demo#readme",
+  "dependencies": {}
+}
