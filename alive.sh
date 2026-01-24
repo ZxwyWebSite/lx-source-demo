@@ -7,9 +7,10 @@
 
 # 要访问的接口地址
 URL="https://${DOMAIN:-lxsrcs.onrender.com}/api/v0/"
+echo "保活地址：$URL"
 
 # 设置间隔时间（秒）
-INTERVAL=60
+INTERVAL=600 # 10m
 
 while true; do
   # 静默模式发送请求
